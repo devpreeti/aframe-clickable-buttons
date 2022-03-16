@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Videosphere</title>
+  <meta name="description" content="Videosphere - A-Frame">
+  <!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script> -->
+  <script src="./aframe-master.js"></script>
+  <script src="./play-on-click.js"></script>
+   <script src="./hide-on-play.js"></script>
+  <!-- <script src="./button-on-end.js"></script> -->
+  <!-- <script src="./hyperlink.js"></script>  -->
+
+</head>
+
+<body>
+  <a-scene cursor = "rayOrigin : mouse">
+    <a-assets>
+      <!--
+        SOURCE
+        Author: Bitmovin
+        URL:    https://bitmovin.com/demos/vr-360
+        -->
+      <video id="video" preload="false" src="https://bitmovin-a.akamaihd.net/content/playhouse-vr/progressive.mp4"
+        autoplay loop="false" crossOrigin="anonymous"></video>
+
+    </a-assets>
+    <a-videosphere  rotation="0 -90 0" src="#video" autoplay= "false" visible="true" play-on-click button-on-end hide-on-play hyperlink>
+
+    </a-videosphere>
+
+    <a-camera>
+      <a-box id="btn2" position="-3 2 -3" rotation="0 45 0" color="yellow"
+      event-set__click="_target: play-on-click "
+      hide-on-play="#video" 
+      hide-on-play
+     
+    ></a-box>
+
+
+      <!-- <a-entity  position="0 0 -1.5" text="align: center;
+                id : text;
+                width: 6;
+                wrapCount: 100;
+                color: white;
+                value: Click or tap to start video" event-set__click="_target: play-on-click "  hide-on-play="#video" play-on-click="#video">
+      </a-entity> -->
+      <!-- <a-entity camera="" look-controls cursor="rayOrigin: mouse"></a-entity> -->
+
+      <!-- <a-box id="btn1" look-controls cursor="rayOrigin:mouse" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
+        shadow event-set__enter="_event: mouseenter; color: #026fc9"
+        event-set__click="_event: mouseclick; color: #4CC3D9" hyperlink="url: http://google.com" button-on-end
+        hide-on-play="#video" hyperlink>
+      </a-box> -->
+      <a-box id="btn1" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
+      event-set__click="_target: hyperlink "
+      hyperlink="url:https://google.com"
+      play-on-click
+      hide-on-play="#video" hyperlink
+      hide-on-play
+      button-on-end="#btn1"
+    ></a-box>
+      <!-- <a-entity
+            id="btn1"
+            geometry = "primitive: box"
+            material="color:red"
+            position="0 0 -2"
+            rotation = "0 -1 -3"
+            scale = "5 5 5"
+            visible = "false"
+            text = "align:center; width: 6; wrapCount:100; color:white;
+                    value: CLICK HERE"
+            
+            button-on-end
+            hide-on-play="#video"></a-entity>   -->
+
+      <!-- <a-text id="btn1" color="yellow" position="1 1.6 -2" value="Click the text"
+                      mylink="href: https://www.google.com;"
+                      button-on-end
+                      hyperlink
+                      hide-on-play="#video"></a-text> -->
+      <!-- <a-entity position="-1 1.6 -2" 
+                        link="highlighted: true; 
+                              highlightedColor:#000000; backgroundColor: red; 
+                              href: https://www.google.com; titleColor: black; 
+                              title: click the image below.;
+                              image: https://i.imgur.com/wjobVTN.jpg;
+                              visualAspectEnabled: true" -->
+
+      <!-- ></a-entity> -->
+
+
+    </a-camera>
+  </a-scene>
+</body>
+
+</html>
