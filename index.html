@@ -5,18 +5,28 @@
   <meta charset="utf-8">
   <title>Videosphere</title>
   <meta name="description" content="Videosphere - A-Frame">
-  <!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-  <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script> -->
+ <!-- <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script> -->
   <script src="./aframe-master.js"></script>
   <script src="./play-on-click.js"></script>
    <script src="./hide-on-play.js"></script>
+   <script src="./look-at.js"></script>
+
   <!-- <script src="./button-on-end.js"></script> -->
   <!-- <script src="./hyperlink.js"></script>  -->
+  <style>
+    .a-enter-vr-button{
+      display:none!important;
+    }
+    </style>
 
 </head>
 
 <body>
   <a-scene cursor = "rayOrigin : mouse">
+    <a-entity id="camera" wasd-controls camera look-controls position="0 0 1.5"></a-entity>
+
+    
     <a-assets>
       <!--
         SOURCE
@@ -24,20 +34,27 @@
         URL:    https://bitmovin.com/demos/vr-360
         -->
       <video id="video" preload="false" src="https://bitmovin-a.akamaihd.net/content/playhouse-vr/progressive.mp4"
-        autoplay loop="false" crossOrigin="anonymous"></video>
+        loop="false" crossorigin="anonymous"></video>
 
     </a-assets>
     <a-videosphere  rotation="0 -90 0" src="#video" autoplay= "false" visible="true" play-on-click button-on-end hide-on-play hyperlink>
-
     </a-videosphere>
+    
+    <!-- <a-box id="btn2" position="-3 2 -3" rotation="0 45 0" color="black" -->
 
-    <a-camera>
-      <a-box id="btn2" position="-3 2 -3" rotation="0 45 0" color="yellow"
+    
+      <a-box id="btn2" look-at="#camera"  position="0 0 -1.5" height="2" width="4" rotation="0 0 0" color="black" material="opacity:0.5"
       event-set__click="_target: play-on-click "
       hide-on-play="#video" 
       hide-on-play
      
-    ></a-box>
+    >
+    <a-entity id="text" text="value: Click or tap to start video;
+                    width : 8;
+                    wrapCount:100;
+                    Color: White;
+                    align:center "></a-entity>
+  </a-box>
 
 
       <!-- <a-entity  position="0 0 -1.5" text="align: center;
@@ -54,14 +71,21 @@
         event-set__click="_event: mouseclick; color: #4CC3D9" hyperlink="url: http://google.com" button-on-end
         hide-on-play="#video" hyperlink>
       </a-box> -->
-      <a-box id="btn1" position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"
+      <a-box id="btn1" look-at="#camera" width="0.7" height="0.7"  position="-0.5 0.5 -2.5" rotation="0 0 45" color="black" material="opacity:1"
       event-set__click="_target: hyperlink "
       hyperlink="url:https://google.com"
       play-on-click
       hide-on-play="#video" hyperlink
-      hide-on-play
       button-on-end="#btn1"
-    ></a-box>
+    >
+    <a-entity id="textt"  text="value: Google.com ;
+    width : 7;
+    wrapCount: 100;
+    Color: black;
+    align:center "></a-entity>
+  
+  
+  </a-box>
       <!-- <a-entity
             id="btn1"
             geometry = "primitive: box"
@@ -92,7 +116,8 @@
       <!-- ></a-entity> -->
 
 
-    </a-camera>
+   
+  
   </a-scene>
 </body>
 
